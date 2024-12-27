@@ -2,6 +2,7 @@
 
 namespace Bojaghi\ViteScripts;
 
+use Bojaghi\Helper\Helper;
 use InvalidArgumentException;
 
 class ViteScript
@@ -28,7 +29,7 @@ class ViteScript
         ];
 
         // Required field check.
-        $args = wp_parse_args($args, $defaults);
+        $args = wp_parse_args(Helper::loadConfig($args), $defaults);
         $keys = ['distBaseUrl', 'manifestPath'];
         foreach ($keys as $key) {
             if (empty($args[$key])) {

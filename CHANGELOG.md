@@ -1,7 +1,14 @@
 # CHANGELOG
 
+## 1.0.1
+
+2024-12-27
+
+- Support configuration file using bojaghi/helper.
+- Libraries version update.
+
 ## 1.0.0
 
-2024년 11월 19일
+2024-11-19
 
-최초 버전
+- Initial version.
