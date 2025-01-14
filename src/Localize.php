@@ -16,6 +16,13 @@ class Localize
     {
     }
 
+    public function scriptTranslation(string $domain = 'default', string $path = ''): Localize
+    {
+        wp_set_script_translations($this->handle, $domain, $path);
+
+        return $this;
+    }
+
     public function vars(string $varName, array $varValue): ViteScript
     {
         wp_localize_script($this->handle, $varName, $varValue);
