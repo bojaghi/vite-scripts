@@ -9,13 +9,14 @@ class ViteScript
 {
     private static bool $footerScriptFlag;
 
-    private string $devServerUrl;
-    private string $distBaseUrl;
-    private bool $isProd;
-    private string $manifestPath;
+    private string        $devServerUrl;
+    private string        $distBaseUrl;
+    private string        $i18n;
+    private bool          $isProd;
+    private string        $manifestPath;
     private ?ViteManifest $manifest;
-    private array $handles;
-    private array $modulePreloads;
+    private array         $handles;
+    private array         $modulePreloads;
 
     public function __construct(array|string $args = [])
     {
@@ -24,6 +25,7 @@ class ViteScript
         $defaults = [
             'devServerUrl' => 'http://localhost:5173', // Optional
             'distBaseUrl'  => '',                      // Required
+            'i18n'         => true,                    // Optional
             'isProd'       => true,                    // Optional
             'manifestPath' => '',                      // Required
         ];
@@ -39,6 +41,7 @@ class ViteScript
 
         $this->devServerUrl   = rtrim((string)$args['devServerUrl'], '/') ?: $defaults['devServerUrl'];
         $this->distBaseUrl    = rtrim((string)$args['distBaseUrl'], '/');
+        $this->i18n           = (bool)$args['i18n'];
         $this->isProd         = (bool)$args['isProd'];
         $this->manifestPath   = (string)$args['manifestPath'];
         $this->manifest       = null;
@@ -91,7 +94,7 @@ class ViteScript
             $handle,
             "$this->devServerUrl/$relPath",
             [
-                'wp-i18n',
+                ...($this->i18n ? ['wp-i18n'] : []),
                 '@vite-client',
                 ...$extraDeps,
             ],
@@ -128,18 +131,18 @@ class ViteScript
 
         wp_enqueue_script(
             handle: $handle,
-            src: $chunks['script'],
-            deps: $extraDeps,
-            ver: null,
-            args: [
-                'strategy'  => 'defer',
-                'in_footer' => true,
-            ],
+            src:    $chunks['script'],
+            deps:   $extraDeps,
+            ver:    null,
+            args:   [
+                        'strategy'  => 'defer',
+                        'in_footer' => true,
+                    ],
         );
 
         foreach ($chunks['styles'] as $idx => $style) {
             wp_enqueue_style(
-                "$handle-$idx",
+                     "$handle-$idx",
                 src: $style,
                 ver: null,
             );

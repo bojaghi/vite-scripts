@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.1
+
+2025-05-07
+
+- Add 'i18n' parameter to control i18n feature.
+
 ## 1.1.0
 
 2025-01-15

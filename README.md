@@ -158,8 +158,9 @@ export default defineConfig({
 $vite = new \Bojaghi\ViteScripts\ViteScript(
     [
         'distBaseUrl'  => plugin_dir_url(__FILE__) . 'dist',
+        'i18n'         => true, 
         'isProd'       => 'production' === wp_get_environment_type(),
-        'manifestPath' => plugin_dir_path(__FILE__) . 'dist/.vite/manifest.json' 
+        'manifestPath' => plugin_dir_path(__FILE__) . 'dist/.vite/manifest.json',
     ],
 );
 
@@ -174,6 +175,8 @@ $vite
 `manifestPath`는 Vite가 프로덕션 코드를 생성한 후, 생성한 코드에 대한 정보를 기록한 곳입니다.
 프로덕션 코드 로딩에 반드시 필요한 파일이므로 정확하게 입력해야 합니다. 기본값으로 'dist/.vite/manifest.json'에 생성되므로,
 적절하게 플러그인의 절대 경로를 (URL이 아님!) 지정해 주면 됩니다.
+
+`i18n`은 워드프레스의 다국어 기능인 `wp-i18n` 스크립트를 로드할지 말지를 결정합니다. 생략하면 `true`입니다.
 
 `isProd`는 직접 값을 입력하는 것 보다는 `wp-config.php` 파일에 `WP_ENVIRONMENT_TYPE` 상수를 'production' 또는 다른 값으로
 수정하는 것에 의해 결정하게 하는 것이 좋습니다. 일단, 생략하면 `true`입니다.
