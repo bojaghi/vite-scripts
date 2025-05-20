@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74509483af60b547db6dde3de6f02acc",
+    "content-hash": "92194b6435de8f290298fd206a65ab39",
     "packages": [
+        {
+            "name": "bojaghi/fields-render",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/fields-render.git",
+                "reference": "923fdd57ac85749405c75a0e1bfb30ef69f42d59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/fields-render/zipball/923fdd57ac85749405c75a0e1bfb30ef69f42d59",
+                "reference": "923fdd57ac85749405c75a0e1bfb30ef69f42d59",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.0",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\FieldsRender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "changwoo",
+                    "email": "ep6tri@hotmail.com"
+                }
+            ],
+            "description": "HTML widget helper for PHP server-side ",
+            "homepage": "https://github.com/bojaghi/fields-render",
+            "support": {
+                "issues": "https://github.com/bojaghi/fields-render/issues",
+                "source": "https://github.com/bojaghi/fields-render/tree/1.0.4"
+            },
+            "time": "2025-05-14T23:43:29+00:00"
+        },
         {
             "name": "bojaghi/helper",
             "version": "1.1.0",
@@ -1900,12 +1946,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.0"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

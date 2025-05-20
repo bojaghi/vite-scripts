@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.0
+
+2025-05-21
+
+- Add MountNode class to render the root mount node.
+
 ## 1.1.1
 
 2025-05-07
