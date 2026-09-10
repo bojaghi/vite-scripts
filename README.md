@@ -166,7 +166,8 @@ $vite = new \Bojaghi\ViteScripts\ViteScript(
 
 $vite
     ->add('my-script', 'src/my-script.tsx')
-    ->vars('myScript', ['name' => 'My React Script']);
+    ->vars('myScript', ['name' => 'My React Script'])
+    ->mountNode();
 ```
 
 `distBaseUrl`은 Vite가 프로덕션용 코드를 만들어내는 곳의 URL 입니다. 기본값으로 Vite는 프로젝트 루트아래 'dist' 디렉토리에
@@ -190,6 +191,9 @@ $vite
 `wp_localize()` 함수를 활용해 데이터를 스크립트로 전달 가능합니다. 이것을 조금 더 편리하게 래핑한 것이
 `vars()` 메소드입니다. 인자로 변수 이름과 변수 값을 넣어 주면 됩니다. 엔트리 지점의 `declare global ...`선언을 참고하여
 데이터의 형테를 일치시켜 주면 됩니다.
+
+`mountNode()`는 마운트될 노드를 출력하는 메소드입니다. `MountNode::render()` 메소드의 래퍼입니다.
+`add()` 메소드에서 지정한 핸들을 그대로 HTML 태그 id 속성으로 사용할 수 있습니다.
 
 ## 예제
 

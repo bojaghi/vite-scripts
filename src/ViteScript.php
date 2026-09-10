@@ -71,15 +71,38 @@ class ViteScript
             return null;
         }
 
-        $this->handles[$handle] = true;
-
         if ($this->isProduction()) {
             $this->prodEnqueue($handle, $relPath, $extraDeps);
         } else {
             $this->devEnqueue($handle, $relPath, $extraDeps);
         }
 
+        $this->handles[$handle] = true;
+
         return Localize::create($this, $handle);
+    }
+
+    /**
+     * Wrapper of MountNode::render()
+     *
+     * @param string $id
+     * @param array  $args
+     *
+     * @return $this
+     */
+    public function mountNode(string $id = '', array $args = []): self
+    {
+        if (empty($id) && ($last = array_key_last($this->handles))) {
+            $id = $last;
+        }
+
+        if ($id) {
+            $args['id'] = $id;
+        }
+
+        MountNode::render($args);
+
+        return $this;
     }
 
     protected function devEnqueue(string $handle, string $relPath, array $extraDeps): void
@@ -131,18 +154,18 @@ class ViteScript
 
         wp_enqueue_script(
             handle: $handle,
-            src:    $chunks['script'],
-            deps:   $extraDeps,
-            ver:    null,
-            args:   [
-                        'strategy'  => 'defer',
-                        'in_footer' => true,
-                    ],
+            src: $chunks['script'],
+            deps: $extraDeps,
+            ver: null,
+            args: [
+                'strategy'  => 'defer',
+                'in_footer' => true,
+            ],
         );
 
         foreach ($chunks['styles'] as $idx => $style) {
             wp_enqueue_style(
-                     "$handle-$idx",
+                "$handle-$idx",
                 src: $style,
                 ver: null,
             );

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.2
+
+2026-09-10
+
+- Add ViteScript::mountNode.
+
 ## 1.2.1
 
 2026-05-04
@@ -22,7 +28,7 @@
 
 2025-01-15
 
-- Add Localize::scriptTranslation()
+- Add Localize::scriptTranslation ()
 
 ## 1.0.1
 

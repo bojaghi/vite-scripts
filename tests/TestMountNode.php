@@ -3,12 +3,13 @@
 namespace Bojaghi\ViteScripts\Tests;
 
 use Bojaghi\ViteScripts\MountNode;
+use Bojaghi\ViteScripts\ViteScript;
 use \WP_UnitTestCase;
 
 class TestMountNode extends WP_UnitTestCase
 {
     /**
-     * @param string $expected
+     * @param string       $expected
      * @param array|string $args
      *
      * @return void
@@ -22,6 +23,22 @@ class TestMountNode extends WP_UnitTestCase
         $output = ob_get_clean();
 
         $this->assertEquals($expected, $output);
+    }
+
+    public function test_viteScriptMountNode(): void
+    {
+        // Fake setup for just using the instance.
+        $script = new ViteScript([
+            'distBaseUrl'  => 'tests',
+            'manifestPath' => 'tests',
+            'isProd'       => false,
+        ]);
+        $script->add('vite-scripts-test', 'tests/test.tsx');
+
+        ob_start();
+        $script->mountNode();
+        $output = ob_get_clean();
+        $this->assertEquals('<div id="vite-scripts-test" class="" data-vite-scripts-root="true"></div>', $output);
     }
 
     protected function _MountNodeProvider(): array
